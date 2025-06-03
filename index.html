@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veo 3 Prompt Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body class="p-4 md:p-8">
+    <div id="messageBox"></div>
+
+    <div class="max-w-5xl mx-auto">
+        <h1 class="title-text">Video Prompt Generator</h1>
+        <p class="subtitle-text">by TIPSUNIX (Versi Web)</p>
+        <div class="card mb-6">
+            <h2 class="text-xl font-semibold mb-3 text-center text-gray-700">Pengaturan API Gemini</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label for="geminiApiKey" class="input-label">API Key Gemini:</label>
+                    <input type="password" id="geminiApiKey" class="input-field" placeholder="Masukkan API Key Anda">
+                    <p class="input-example">API Key Anda tidak akan disimpan atau dibagikan.</p>
+                </div>
+                <div>
+                    <label for="geminiModel" class="input-label">Model Gemini:</label>
+                    <select id="geminiModel" class="select-field">
+                        <option value="gemini-2.0-flash">Gemini 2.0 Flash (Cepat & Efisien)</option>
+                        <option value="gemini-pro">Gemini Pro (Umum)</option>
+                        <option value="gemini-1.5-flash-latest">Gemini 1.5 Flash (Terbaru, Cepat)</option>
+                        <option value="gemini-1.5-pro-latest">Gemini 1.5 Pro (Terbaru, Canggih)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="space-y-4">
+                <div class="card">
+                    <label for="subject" class="input-label">1. Subjek:</label>
+                    <input type="text" id="subject" class="input-field" placeholder="Contoh: Seekor naga perkasa">
+                    <p class="input-example">Contoh: Seekor naga perkasa</p>
+                </div>
+                <div class="card">
+                    <label for="expression" class="input-label">3. Ekspresi:</label>
+                    <input type="text" id="expression" class="input-field" placeholder="Contoh: sedih, gembira, marah">
+                    <p class="input-example">Contoh: sedih, gembira, marah</p>
+                </div>
+                 <div class="card">
+                    <label for="time" class="input-label">5. Waktu:</label>
+                    <select id="time" class="select-field">
+                        <option value="">Pilih...</option>
+                        <option value="pagi hari">Pagi Hari</option>
+                        <option value="siang hari">Siang Hari</option>
+                        <option value="sore hari">Sore Hari</option>
+                        <option value="malam hari">Malam Hari</option>
+                        <option value="saat fajar">Fajar</option>
+                        <option value="saat senja">Senja</option>
+                        <option value="golden hour">Golden Hour</option>
+                        <option value="blue hour">Blue Hour</option>
+                        <option value="tengah malam">Tengah Malam</option>
+                    </select>
+                </div>
+                <div class="card">
+                    <label for="lighting" class="input-label">7. Pencahayaan:</label>
+                    <select id="lighting" class="select-field">
+                        <option value="">Pilih...</option>
+                        <option value="alami">Alami</option>
+                        <option value="studio">Studio</option>
+                        <option value="remang-remang">Remang (Low Key)</option>
+                        <option value="sangat cerah">Cerah (High Key)</option>
+                        <option value="backlight">Backlight</option>
+                        <option value="siluet">Siluet</option>
+                        <option value="cahaya lembut">Cahaya Lembut</option>
+                        <option value="cahaya keras">Cahaya Keras</option>
+                        <option value="neon">Neon</option>
+                        <option value="sinematik">Sinematik</option>
+                    </select>
+                </div>
+                <div class="card">
+                    <label for="atmosphere" class="input-label">9. Suasana Video:</label>
+                    <select id="atmosphere" class="select-field">
+                        <option value="">Pilih...</option>
+                        <option value="gembira">Gembira</option>
+                        <option value="sedih">Sedih</option>
+                        <option value="tegang">Tegang</option>
+                        <option value="misterius">Misterius</option>
+                        <option value="damai">Damai</option>
+                        <option value="romantis">Romantis</option>
+                        <option value="epik">Epik</option>
+                        <option value="nostalgia">Nostalgia</option>
+                        <option value="menyeramkan">Menyeramkan</option>
+                        <option value="aneh">Aneh</option>
+                    </select>
+                </div>
+                 <div class="card">
+                    <label for="spokenText" class="input-label">11. Kalimat Diucapkan:</label>
+                    <input type="text" id="spokenText" class="input-field" placeholder="Contoh: 'Ini luar biasa!'">
+                    <p class="input-example">Contoh: 'Ini luar biasa!'</p>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <div class="card">
+                    <label for="action" class="input-label">2. Aksi:</label>
+                    <input type="text" id="action" class="input-field" placeholder="Contoh: terbang di atas kota">
+                    <p class="input-example">Contoh: terbang di atas kota</p>
+                </div>
+                <div class="card">
+                    <label for="place" class="input-label">4. Tempat:</label>
+                    <input type="text" id="place" class="input-field" placeholder="Contoh: hutan hujan tropis">
+                    <p class="input-example">Contoh: hutan hujan tropis</p>
+                </div>
+                <div class="card">
+                    <label for="cameraMovement" class="input-label">6. Gerakan Kamera:</label>
+                    <select id="cameraMovement" class="select-field">
+                        <option value="">Pilih...</option>
+                        <option value="statis">Statis</option>
+                        <option value="panning">Panning</option>
+                        <option value="tilt">Tilt</option>
+                        <option value="dolly zoom">Dolly Zoom</option>
+                        <option value="tracking shot">Tracking Shot</option>
+                        <option value="crane shot">Crane Shot</option>
+                        <option value="handheld">Handheld</option>
+                        <option value="drone shot">Drone Shot</option>
+                        <option value="slow motion">Slow Motion</option>
+                        <option value="timelapse">Timelapse</option>
+                    </select>
+                </div>
+                <div class="card">
+                    <label for="videoStyle" class="input-label">8. Gaya Video:</label>
+                    <select id="videoStyle" class="select-field">
+                        <option value="">Pilih...</option>
+                        <option value="realistis">Realistis</option>
+                        <option value="sinematik">Sinematik</option>
+                        <option value="kartun">Kartun</option>
+                        <option value="anime">Anime</option>
+                        <option value="fantasi">Fantasi</option>
+                        <option value="fiksi ilmiah">Fiksi Ilmiah</option>
+                        <option value="horor">Horor</option>
+                        <option value="dokumenter">Dokumenter</option>
+                        <option value="vlog">Vlog</option>
+                        <option value="abstrak">Abstrak</option>
+                        <option value="pixel art">Pixel Art</option>
+                        <option value="vaporwave">Vaporwave</option>
+                    </select>
+                </div>
+                <div class="card">
+                    <label for="soundMusic" class="input-label">10. Suara/Musik:</label>
+                    <input type="text" id="soundMusic" class="input-field" placeholder="Contoh: musik orkestra epik">
+                    <p class="input-example">Contoh: musik orkestra epik</p>
+                </div>
+                <div class="card">
+                    <label for="additionalDetails" class="input-label">12. Detail Tambahan:</label>
+                    <input type="text" id="additionalDetails" class="input-field" placeholder="Contoh: efek partikel, resolusi 8K">
+                    <p class="input-example">Contoh: efek partikel, resolusi 8K</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mb-8">
+            <h2 class="text-xl font-semibold mb-4 text-center text-purple-700">✨ Bantuan Gemini ✨</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
+                <div>
+                    <label for="geminiTheme" class="input-label">Tema untuk Saran Lengkap:</label>
+                    <input type="text" id="geminiTheme" class="input-field" placeholder="Contoh: fantasi, fiksi ilmiah">
+                </div>
+                <button id="btnSuggest" class="btn btn-purple w-full md:w-auto">
+                    Saran Lengkap (Subjek, Aksi, Ekspresi, Tempat, Musik)
+                    <span id="suggestLoader" class="loader" style="display: none;"></span>
+                </button>
+            </div>
+             <div class="mt-4">
+                 <button id="btnDevelopDetails" class="btn btn-purple w-full">
+                    Kembangkan Detail Tambahan (dari Prompt ID)
+                    <span id="developLoader" class="loader" style="display: none;"></span>
+                </button>
+                 <p class="input-example text-center mt-1">Fitur ini adalah placeholder untuk pengembangan di masa mendatang.</p>
+             </div>
+             <div class="mt-4">
+                <button id="btnEnhancePrompt" class="btn btn-warning w-full"> 
+                    Tingkatkan Prompt Saat Ini (Hasil di Bawah)
+                    <span id="enhanceLoader" class="loader" style="display: none;"></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <button id="btnGenerateTranslate" class="btn btn-primary">
+                Buat & Terjemahkan Prompt (Hasil Utama)
+                <span id="translateLoader" class="loader" style="display: none;"></span>
+            </button>
+            <button id="btnReset" class="btn btn-secondary">Reset Semua Input & Hasil</button>
+            <button id="btnCopyAll" class="btn btn-purple">Salin Semua Prompt</button>
+            <button id="btnExport" class="btn btn-success">Ekspor Prompt (.txt)</button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-2 text-gray-700">Prompt Dihasilkan (Indonesia):</h3>
+                <div id="promptOutputIndonesia" class="prompt-output">Prompt Bahasa Indonesia akan muncul di sini setelah mengisi form...</div>
+                <button id="btnCopyIndonesia" class="btn btn-primary mt-3 w-full">Salin Prompt Indonesia</button>
+            </div>
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-2 text-gray-700">Prompt Final (English):</h3>
+                <div id="promptOutputEnglish" class="prompt-output">Terjemahan prompt akan muncul di sini setelah klik 'Buat & Terjemahkan'.</div>
+                <button id="btnCopyEnglish" class="btn btn-primary mt-3 w-full">Salin Prompt English</button>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+        <h2 class="text-xl font-semibold mb-4 text-center text-amber-600">🌟 Hasil Prompt yang Ditingkatkan 🌟</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-2 text-gray-700">Prompt Ditingkatkan (Indonesia):</h3>
+                <div id="enhancedPromptOutputIndonesia" class="prompt-output">Hasil peningkatan prompt akan muncul di sini...</div>
+                <button id="btnCopyEnhancedIndonesia" class="btn btn-warning mt-3 w-full">Salin Prompt Ditingkatkan (ID)</button>
+            </div>
+            <div class="card">
+                <h3 class="text-lg font-semibold mb-2 text-gray-700">Prompt Ditingkatkan (English):</h3>
+                <div id="enhancedPromptOutputEnglish" class="prompt-output">Terjemahan prompt yang ditingkatkan akan muncul di sini...</div>
+                <button id="btnCopyEnhancedEnglish" class="btn btn-warning mt-3 w-full">Salin Prompt Ditingkatkan (EN)</button>
+            </div>
+        </div>
+
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
